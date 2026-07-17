@@ -11,8 +11,12 @@
         :root {
             --primary-purple: #7e22ce;
             --light-purple: #f3e8ff;
+            --bg-light-purple: #faf5ff; /* เพิ่มสีพื้นหลังม่วงอ่อน */
+            
             --primary-orange: #ea580c;
             --light-orange: #ffedd5;
+            --bg-light-orange: #fff8f0; /* เพิ่มสีพื้นหลังส้มอ่อน */
+            
             --bg-gradient: linear-gradient(135deg, #a855f7 0%, #f97316 100%);
             --text-dark: #333333;
             --text-light: #666666;
@@ -63,12 +67,13 @@
             font-size: 15px;
         }
 
+        /* ตกแต่งกรอบข้อมูล (Fieldset) ให้เป็นสีม่วงอ่อน */
         fieldset {
             border: 2px solid var(--light-purple);
             border-radius: 10px;
             padding: 20px;
             margin-bottom: 25px;
-            background-color: #fafafa;
+            background-color: var(--bg-light-purple); 
             transition: border-color 0.3s;
         }
 
@@ -86,13 +91,16 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        /* ตกแต่งสี Legend สลับ ม่วง-ส้ม */
+        /* ตกแต่งกรอบข้อมูลคู่ ให้เป็นสีส้มอ่อน */
+        fieldset:nth-child(even) {
+            border-color: var(--light-orange);
+            background-color: var(--bg-light-orange);
+        }
+        
         fieldset:nth-child(even) legend {
             background-color: var(--primary-orange);
         }
-        fieldset:nth-child(even) {
-            border-color: var(--light-orange);
-        }
+        
         fieldset:nth-child(even):hover {
             border-color: #fdba74;
         }
@@ -118,6 +126,7 @@
             color: var(--text-dark);
         }
 
+        /* ตกแต่งช่องกรอกข้อมูล */
         input[type="text"],
         input[type="number"],
         input[type="email"],
@@ -132,13 +141,27 @@
             border-radius: 8px;
             font-family: 'Prompt', sans-serif;
             font-size: 15px;
+            background-color: #ffffff; /* ให้ช่องกรอกเป็นสีขาวเพื่อให้พิมพ์ง่ายและโดดเด่นจากพื้นหลังกรอบ */
             transition: all 0.3s;
         }
 
-        input:focus, select:focus, textarea:focus {
+        /* เอฟเฟกต์เวลาคลิกช่องกรอกข้อมูล (หมวดหมู่สีม่วง) */
+        fieldset:nth-child(odd) input:focus, 
+        fieldset:nth-child(odd) select:focus, 
+        fieldset:nth-child(odd) textarea:focus {
             outline: none;
             border-color: var(--primary-purple);
             box-shadow: 0 0 0 3px var(--light-purple);
+            background-color: #fffcfcf;
+        }
+
+        /* เอฟเฟกต์เวลาคลิกช่องกรอกข้อมูล (หมวดหมู่สีส้ม) */
+        fieldset:nth-child(even) input:focus, 
+        fieldset:nth-child(even) select:focus, 
+        fieldset:nth-child(even) textarea:focus {
+            outline: none;
+            border-color: var(--primary-orange);
+            box-shadow: 0 0 0 3px var(--light-orange);
         }
 
         textarea {
@@ -221,13 +244,13 @@
         }
 
         .btn-reset {
-            background-color: #f1f5f9;
+            background-color: #ffffff;
             color: var(--text-dark);
             border: 1px solid var(--border-color);
         }
 
         .btn-reset:hover {
-            background-color: #e2e8f0;
+            background-color: #f1f5f9;
         }
 
         /* Responsive */
